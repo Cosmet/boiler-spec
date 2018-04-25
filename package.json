@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server",
-    "webpack": "webpack"
+    "client": "webpack --env.target=web",
+    "server": "tsc --outDir ./dist/server"
   },
   "author": "",
   "license": "ISC",

@@ -3,11 +3,12 @@
     /* Basic Options */
     "target": "es5",
     "module": "commonjs",
-    "lib": ["ES2015", "dom"],
+    "lib": ["es5", "dom", "es2015", "scripthost"],
     "outDir": "./dist",
-    "rootDir": "./src",
+    // "rootDir": "./src",
     "strict": true,
     "jsx": "react",
+    "allowJs": true,
     "strictNullChecks": true,              /* Enable strict null checks. */
     "strictFunctionTypes": true,           /* Enable strict checking of function types. */
     "strictPropertyInitialization": true,
@@ -15,6 +16,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "importHelpers": true,
+    "noEmitHelpers": true,
     "noImplicitAny": false
-  }
+  },
+  "include": [
+    "./src/server"
+  ]
 }
