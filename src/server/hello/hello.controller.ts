@@ -3,10 +3,10 @@ import { HelloComponent } from './hello.component';
 
 @Controller('/hello')
 export class HelloController {
-  constructor(private readonly helloComponent: HelloComponent) {}
+  constructor (private readonly helloComponent: HelloComponent) {}
 
   @Get()
-  public sayHello(name: string = 'Specless'): string {
+  public sayHello (name: string = 'Specless'): string {
     return this.helloComponent.sayHello(name);
   }
 }

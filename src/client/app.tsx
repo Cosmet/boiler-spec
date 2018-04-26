@@ -1,15 +1,16 @@
 import React from 'react';
+import { Nav } from './containers';
+import Routes from './routes';
 
+// App must be Component not PureComponent to unblock router
 class App extends React.Component {
-  render() {
+  public render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <Nav />
+        <div className='main'>
+          <Routes />
+        </div>
       </div>
     );
   }

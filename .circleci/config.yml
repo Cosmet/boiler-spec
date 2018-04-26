@@ -1,0 +1,88 @@
+version: 2
+jobs:
+  # deploy:
+  #   docker:
+  #     - image: pthomas551/gcloud-node-6.10.1:0.0.3
+  #   working_directory: ~/repo
+  #   steps:
+  #     - checkout
+  #     - restore_cache:
+  test:
+    docker:
+      # specify the version you desire here
+      - image: pthomas551/gcloud-node-6.10.1:0.0.3
+
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      # Download any cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: "Setup .npmrc"
+          command: |
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
+      - run: mkdir reports && mkdir reports/junit
+
+      - run: yarn install
+
+      # save cache for faster build times
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+#      # run tests!
+      - run:
+          name: "Test Suite"
+          command: yarn run test
+          environment:
+                  JEST_JUNIT_OUTPUT: "reports/junit/test-results.xml"
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
+      - run:
+          name: "Build"
+          command: |
+            if [ "$CIRCLE_BRANCH" = "master" ]; then
+              echo 'Compiling Production App'
+              yarn run build-client
+            else
+              echo 'Compiling Development App'
+              yarn run build-client
+            fi
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+          # taken to be the root directory of the workspace.
+          root: ~/repo/src
+          # Must be relative path from root
+          paths:
+            - public
+            - server
+
+workflows:
+  version: 2
+  build-dev-deploy:
+    jobs:
+      - test
+      # - deploy:
+      #     requires:
+      #       - test
+      #     filters:
+      #       branches:
+      #         only:
+      #           - develop
+      #           - master

@@ -8,4 +8,4 @@ import { HelloComponent } from './hello.component';
   imports: [],
   // exports: [HelloComponent],
 })
-export class HelloModule {};
+export class HelloModule {}

@@ -1,0 +1,25 @@
+html.gr__localhost {
+  height: 100%;
+}
+
+.main {
+  height: 100%;
+}
+
+.auth-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 50px);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}

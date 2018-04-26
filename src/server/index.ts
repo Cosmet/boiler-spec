@@ -3,7 +3,7 @@ import * as path from 'path';
 import express from 'express';
 import { AppModule } from './app.module';
 
-async function bootstrap() {
+async function bootstrap () {
   const app = await NestFactory.create(AppModule);
 
   // static file-serving middleware

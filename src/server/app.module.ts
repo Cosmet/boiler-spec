@@ -6,4 +6,4 @@ import { HelloModule } from './hello/hello.module';
     HelloModule,
   ],
 })
-export class AppModule {};
+export class AppModule {}

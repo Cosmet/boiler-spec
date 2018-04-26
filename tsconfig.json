@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    /* Basic Options */
     "target": "es5",
     "module": "commonjs",
     "lib": ["es5", "dom", "es2015", "scripthost"],
@@ -9,8 +8,8 @@
     "strict": true,
     "jsx": "react",
     "allowJs": true,
-    "strictNullChecks": true,              /* Enable strict null checks. */
-    "strictFunctionTypes": true,           /* Enable strict checking of function types. */
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
     "strictPropertyInitialization": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,

@@ -6,10 +6,10 @@ import {
 import createLogger from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-// import user from './user'
+import user from './user';
 
 const reducer = combineReducers({
-  // user,
+  user,
 });
 
 const logger = createLogger({
@@ -18,10 +18,10 @@ const logger = createLogger({
 });
 
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware,logger)
+  applyMiddleware(thunkMiddleware, logger),
 );
 
 const store = createStore(reducer, middleware);
 
-export default store
-// export * from './user'
+export default store;
+export * from './user';
